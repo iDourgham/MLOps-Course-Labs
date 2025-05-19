@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/55320764727e4f33bcb9d4d444874042/artifacts
+deleted_time: 1747641376228
+end_time: 1747641107853
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: deleted
+run_id: 55320764727e4f33bcb9d4d444874042
+run_name: crawling-foal-473
+run_uuid: 55320764727e4f33bcb9d4d444874042
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747641091717
+status: 4
+tags: []
+user_id: Mohamed

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/adfa8529b6024456b615d3c5ef6831f1/artifacts
+end_time: 1747641233131
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: active
+run_id: adfa8529b6024456b615d3c5ef6831f1
+run_name: sincere-goat-776
+run_uuid: adfa8529b6024456b615d3c5ef6831f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747641208501
+status: 3
+tags: []
+user_id: Mohamed

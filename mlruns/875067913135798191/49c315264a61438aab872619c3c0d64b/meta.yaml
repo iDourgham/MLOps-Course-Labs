@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/49c315264a61438aab872619c3c0d64b/artifacts
+deleted_time: 1747641376228
+end_time: 1747641056096
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: deleted
+run_id: 49c315264a61438aab872619c3c0d64b
+run_name: flawless-elk-118
+run_uuid: 49c315264a61438aab872619c3c0d64b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747641055880
+status: 4
+tags: []
+user_id: Mohamed

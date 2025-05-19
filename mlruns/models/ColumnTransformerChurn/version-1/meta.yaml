@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1747641102126
+current_stage: None
+description: ''
+last_updated_timestamp: 1747641102126
+name: ColumnTransformerChurn
+run_id: 55320764727e4f33bcb9d4d444874042
+run_link: ''
+source: mlflow-artifacts:/875067913135798191/55320764727e4f33bcb9d4d444874042/artifacts/column_transformer
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/875067913135798191/55320764727e4f33bcb9d4d444874042/artifacts/column_transformer
+user_id: null
+version: 1
