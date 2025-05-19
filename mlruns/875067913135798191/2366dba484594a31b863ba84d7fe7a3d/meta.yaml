@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/2366dba484594a31b863ba84d7fe7a3d/artifacts
+deleted_time: 1747645320124
+end_time: null
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: deleted
+run_id: 2366dba484594a31b863ba84d7fe7a3d
+run_name: shivering-mare-155
+run_uuid: 2366dba484594a31b863ba84d7fe7a3d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747644930469
+status: 1
+tags: []
+user_id: Mohamed

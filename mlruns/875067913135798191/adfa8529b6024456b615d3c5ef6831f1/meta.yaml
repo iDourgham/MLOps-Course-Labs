@@ -4,7 +4,7 @@ entry_point_name: ''
 experiment_id: '875067913135798191'
 lifecycle_stage: active
 run_id: adfa8529b6024456b615d3c5ef6831f1
-run_name: sincere-goat-776
+run_name: Logistic Regression
 run_uuid: adfa8529b6024456b615d3c5ef6831f1
 source_name: ''
 source_type: 4

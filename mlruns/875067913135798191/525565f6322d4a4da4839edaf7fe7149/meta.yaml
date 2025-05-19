@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/525565f6322d4a4da4839edaf7fe7149/artifacts
+deleted_time: 1747645320122
+end_time: null
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: deleted
+run_id: 525565f6322d4a4da4839edaf7fe7149
+run_name: smiling-frog-360
+run_uuid: 525565f6322d4a4da4839edaf7fe7149
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747644813704
+status: 1
+tags: []
+user_id: Mohamed

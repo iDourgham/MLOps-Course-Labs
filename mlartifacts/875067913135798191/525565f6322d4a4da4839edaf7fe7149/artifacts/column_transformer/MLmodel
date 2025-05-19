@@ -1,0 +1,18 @@
+artifact_path: column_transformer
+flavors:
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 2.22.0
+model_size_bytes: 3580
+model_uuid: 3d5a6f81212a4395ad680262d397f61f
+prompts: null
+run_id: 525565f6322d4a4da4839edaf7fe7149
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+utc_time_created: '2025-05-19 08:53:33.823263'

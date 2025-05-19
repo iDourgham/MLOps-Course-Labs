@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/875067913135798191/3251c6ecee4d41da810839fea2507a03/artifacts
+deleted_time: 1747645320119
+end_time: 1747645210118
+entry_point_name: ''
+experiment_id: '875067913135798191'
+lifecycle_stage: deleted
+run_id: 3251c6ecee4d41da810839fea2507a03
+run_name: able-colt-632
+run_uuid: 3251c6ecee4d41da810839fea2507a03
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747645175404
+status: 3
+tags: []
+user_id: Mohamed

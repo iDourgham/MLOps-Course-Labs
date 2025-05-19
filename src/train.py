@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder,  StandardScaler
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay)
-
+from sklearn.ensemble import RandomForestClassifier
 
 ### Import MLflow
 import mlflow
@@ -126,19 +126,19 @@ def train(X_train, y_train):
         y_train (pd.Series): Series with target
 
     Returns:
-        LogisticRegression: trained logistic regression model
+        RandomForestClassifier: trained random forest classifier model
     """
-    log_reg = LogisticRegression(max_iter=1000)
-    log_reg.fit(X_train, y_train)
+    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf.fit(X_train, y_train)
 
     ### Log the model with the input and output schema
     # Infer signature (input and output schema)
 
-    signature = infer_signature(X_train, log_reg.predict(X_train))
+    signature = infer_signature(X_train, rf.predict(X_train))
     mlflow.sklearn.log_model(
-        sk_model=log_reg,
+        sk_model=rf,
         artifact_path="model",
-        registered_model_name="LogisticRegressionChurn",
+        registered_model_name="RandomForestChurn",
         input_example=X_train.iloc[0:1],
         signature=signature,
     )
@@ -148,11 +148,11 @@ def train(X_train, y_train):
     
     os.makedirs("model", exist_ok=True)
     ### Log the model
-    dump(log_reg, "model/model.pkl")
+    dump(rf, "model/model.pkl")
     mlflow.log_artifact("model/model.pkl")
     
 
-    return log_reg
+    return rf
 
 # conda activate [PATH_TO_ENV]
 # conda activate ./.churn_prediction
@@ -166,17 +166,22 @@ def train(X_train, y_train):
 
 def main():
     ### Set the tracking URI for MLflow
+    print("Starting Mlflow ui")
     mlflow.set_tracking_uri("http://localhost:5000")
 
     ### Set the experiment name
+    print("Starting Experiment")
     mlflow.set_experiment("churn_prediction")
 
     ### Start a new run and leave all the main function code as part of the experiment
+    print("Starting run")
     with mlflow.start_run():
 
+        print("loading data")
         df = pd.read_csv("data/Churn_Modelling.csv")
         col_transf, X_train, X_test, y_train, y_test = preprocess(df)
 
+        print("start logging")
         ### Log the max_iter parameter
         mlflow.log_param("max_iter", 1000)
         ### Log the column transformer as an artifact
@@ -184,11 +189,15 @@ def main():
         mlflow.log_artifact("column_transformer.pkl")
         ### Log the data
         mlflow.log_artifact("data/Churn_Modelling.csv")
+
+        print("start training")
         model = train(X_train, y_train)
 
     
+        print("start predicting")
         y_pred = model.predict(X_test)
-
+        
+        print("logging metrics")
         ### Log metrics after calculating them
         mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred))
         mlflow.log_metric("precision", precision_score(y_test, y_pred))
@@ -197,16 +206,20 @@ def main():
 
 
         ### Log tags
-        mlflow.set_tags({"model": "LogisticRegression", "dataset": "Churn_Modelling"})
+        print("Start logging tags")
+        mlflow.set_tags({"model": "RandomForestClassifier", "dataset": "Churn_Modelling"})
 
     
-    
+        print("Print Confusion Matrix")
         conf_mat = confusion_matrix(y_test, y_pred, labels=model.classes_)
         conf_mat_disp = ConfusionMatrixDisplay(
             confusion_matrix=conf_mat, display_labels=model.classes_
         )
+
+        print("plotting Confusion Matrix")
         conf_mat_disp.plot()
-    
+
+        print("log the image info artifact")
         # Log the image as an artifact in MLflow
         conf_mat_disp.figure_.savefig("confusion_matrix.png")
         mlflow.log_artifact("confusion_matrix.png")
