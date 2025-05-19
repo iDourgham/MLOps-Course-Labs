@@ -13,6 +13,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder,  StandardScaler
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay)
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import svm
 
 ### Import MLflow
 import mlflow
@@ -119,26 +120,26 @@ def preprocess(df):
 
 def train(X_train, y_train):
     """
-    Train a logistic regression model.
+    Train an SVM classifier model.
 
     Args:
         X_train (pd.DataFrame): DataFrame with features
         y_train (pd.Series): Series with target
 
     Returns:
-        RandomForestClassifier: trained random forest classifier model
+        SVC: trained SVM classifier model
     """
-    rf = RandomForestClassifier(n_estimators=100, random_state=42)
-    rf.fit(X_train, y_train)
+    svm_model = svm.SVC()
+    svm_model.fit(X_train, y_train)
 
     ### Log the model with the input and output schema
     # Infer signature (input and output schema)
 
-    signature = infer_signature(X_train, rf.predict(X_train))
+    signature = infer_signature(X_train, svm_model.predict(X_train))
     mlflow.sklearn.log_model(
-        sk_model=rf,
+        sk_model=svm_model,
         artifact_path="model",
-        registered_model_name="RandomForestChurn",
+        registered_model_name="SVMClassifierChurn",
         input_example=X_train.iloc[0:1],
         signature=signature,
     )
@@ -148,11 +149,11 @@ def train(X_train, y_train):
     
     os.makedirs("model", exist_ok=True)
     ### Log the model
-    dump(rf, "model/model.pkl")
+    dump(svm_model, "model/model.pkl")
     mlflow.log_artifact("model/model.pkl")
     
 
-    return rf
+    return svm_model
 
 # conda activate [PATH_TO_ENV]
 # conda activate ./.churn_prediction
@@ -207,7 +208,7 @@ def main():
 
         ### Log tags
         print("Start logging tags")
-        mlflow.set_tags({"model": "RandomForestClassifier", "dataset": "Churn_Modelling"})
+        mlflow.set_tags({"model": "SVMClassifierChurn", "dataset": "Churn_Modelling"})
 
     
         print("Print Confusion Matrix")
