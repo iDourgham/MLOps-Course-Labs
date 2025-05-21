@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 import pandas as pd
 import joblib
 import logging
 from typing import List
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 
 
 
@@ -58,3 +59,7 @@ def predict(data: List[ChurnInput]):
     except Exception as e:
         logging.exception("Prediction failed.")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/metrics")
+def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
