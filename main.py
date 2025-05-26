@@ -7,7 +7,7 @@ from src.api import app
 
 os.makedirs("logs", exist_ok=True)
 
-# Setup logging
+# Setup loggingg
 logging.basicConfig(
     filename="logs/churn_api.log",
     format="%(asctime)s - %(levelname)s - %(message)s",
